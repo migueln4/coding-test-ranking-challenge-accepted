@@ -1,5 +1,6 @@
 package com.idealista.main.persistence.vo;
 
+import com.idealista.main.persistence.enums.AdTypology;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 public class AdVO {
 
     private Integer id;
-    private String typology;
+    private AdTypology typology;
     private String description;
     private List<Integer> pictures;
     private Integer houseSize;

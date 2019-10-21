@@ -1,5 +1,7 @@
 package com.idealista.main.persistence;
 
+import com.idealista.main.persistence.enums.AdTypology;
+import com.idealista.main.persistence.enums.PictureQuality;
 import com.idealista.main.persistence.vo.AdVO;
 import com.idealista.main.persistence.vo.PictureVO;
 import lombok.Data;
@@ -21,36 +23,31 @@ public class InMemoryPersistence {
     private List<AdVO> ads;
     private List<PictureVO> pictures;
 
-    private final String HD = "HD";
-    private final String SD = "SD";
-    private final String CHALET = "CHALET";
-    private final String FLAT = "FLAT";
-    private final String GARAGE = "GARAGE";
-
     private final String REGEXP = "\\s+|\\n";
 
     private final String[] MAIN_WORDS = {"Luminoso", "Nuevo", "Céntrico", "Reformado", "Ático"};
 
     public InMemoryPersistence() {
+
         ads = new ArrayList<AdVO>();
-        ads.add(new AdVO(1, "CHALET", "Este piso es una ganga, compra, compra, COMPRA!!!!!", Collections.<Integer>emptyList(), 300, null, null, null));
-        ads.add(new AdVO(2, "FLAT", "Nuevo ático céntrico recién reformado. No deje pasar la oportunidad y adquiera este ático de lujo", Arrays.asList(4), 300, null, null, null));
-        ads.add(new AdVO(3, "CHALET", "", Arrays.asList(2), 300, null, null, null));
-        ads.add(new AdVO(4, "FLAT", "Ático céntrico muy luminoso y recién reformado, parece nuevo", Arrays.asList(5), 300, null, null, null));
-        ads.add(new AdVO(5, "FLAT", "Pisazo,", Arrays.asList(3, 8), 300, null, null, null));
-        ads.add(new AdVO(6, "GARAGE", "", Arrays.asList(6), 300, null, null, null));
-        ads.add(new AdVO(7, "GARAGE", "Garaje en el centro de Albacete", Collections.<Integer>emptyList(), 300, null, null, null));
-        ads.add(new AdVO(8, "CHALET", "Maravilloso chalet situado en lAs afueras de un pequeño pueblo rural. El entorno es espectacular, las vistas magníficas. ¡Cómprelo ahora!", Arrays.asList(1, 7), 300, null, null, null));
+        ads.add(new AdVO(1, AdTypology.CHALET, "Este piso es una ganga, compra, compra, COMPRA!!!!!", Collections.<Integer>emptyList(), 300, null, null, null));
+        ads.add(new AdVO(2, AdTypology.FLAT, "Nuevo ático céntrico recién reformado. No deje pasar la oportunidad y adquiera este ático de lujo", Arrays.asList(4), 300, null, null, null));
+        ads.add(new AdVO(3, AdTypology.CHALET, "", Arrays.asList(2), 300, null, null, null));
+        ads.add(new AdVO(4, AdTypology.FLAT, "Ático céntrico muy luminoso y recién reformado, parece nuevo", Arrays.asList(5), 300, null, null, null));
+        ads.add(new AdVO(5, AdTypology.FLAT, "Pisazo,", Arrays.asList(3, 8), 300, null, null, null));
+        ads.add(new AdVO(6, AdTypology.GARAGE, "", Arrays.asList(6), 300, null, null, null));
+        ads.add(new AdVO(7, AdTypology.GARAGE, "Garaje en el centro de Albacete", Collections.<Integer>emptyList(), 300, null, null, null));
+        ads.add(new AdVO(8, AdTypology.CHALET, "Maravilloso chalet situado en lAs afueras de un pequeño pueblo rural. El entorno es espectacular, las vistas magníficas. ¡Cómprelo ahora!", Arrays.asList(1, 7), 300, null, null, null));
 
         pictures = new ArrayList<PictureVO>();
-        pictures.add(new PictureVO(1, "http://www.idealista.com/pictures/1", "SD"));
-        pictures.add(new PictureVO(2, "http://www.idealista.com/pictures/2", "HD"));
-        pictures.add(new PictureVO(3, "http://www.idealista.com/pictures/3", "SD"));
-        pictures.add(new PictureVO(4, "http://www.idealista.com/pictures/4", "HD"));
-        pictures.add(new PictureVO(5, "http://www.idealista.com/pictures/5", "SD"));
-        pictures.add(new PictureVO(6, "http://www.idealista.com/pictures/6", "SD"));
-        pictures.add(new PictureVO(7, "http://www.idealista.com/pictures/7", "SD"));
-        pictures.add(new PictureVO(8, "http://www.idealista.com/pictures/8", "HD"));
+        pictures.add(new PictureVO(1, "http://www.idealista.com/pictures/1", PictureQuality.SD));
+        pictures.add(new PictureVO(2, "http://www.idealista.com/pictures/2", PictureQuality.HD));
+        pictures.add(new PictureVO(3, "http://www.idealista.com/pictures/3", PictureQuality.SD));
+        pictures.add(new PictureVO(4, "http://www.idealista.com/pictures/4", PictureQuality.HD));
+        pictures.add(new PictureVO(5, "http://www.idealista.com/pictures/5", PictureQuality.SD));
+        pictures.add(new PictureVO(6, "http://www.idealista.com/pictures/6", PictureQuality.SD));
+        pictures.add(new PictureVO(7, "http://www.idealista.com/pictures/7", PictureQuality.SD));
+        pictures.add(new PictureVO(8, "http://www.idealista.com/pictures/8", PictureQuality.HD));
     }
 
     /**
@@ -154,7 +151,7 @@ public class InMemoryPersistence {
         if (description != null && !description.isEmpty()) {
             score += Integer.valueOf(5);
             String[] descriptionByWords = description.split(REGEXP);
-            switch (ad.getTypology().toUpperCase()) {
+            switch (ad.getTypology()) {
                 case FLAT:
                     if (descriptionByWords.length > 19) {
                         score += (description.length() <= 49) ? Integer.valueOf(10) : Integer.valueOf(30);

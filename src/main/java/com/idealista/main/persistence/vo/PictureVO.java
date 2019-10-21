@@ -1,5 +1,6 @@
 package com.idealista.main.persistence.vo;
 
+import com.idealista.main.persistence.enums.PictureQuality;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,5 @@ public class PictureVO {
 
     private Integer id;
     private String url;
-    private String quality;
+    private PictureQuality quality;
 }

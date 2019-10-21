@@ -36,7 +36,7 @@ public class AdConverter {
             List<String> pictureUrls = getPictureUrlList(advo);
             qualityAd = new QualityAd(
                     advo.getId(),
-                    advo.getTypology(),
+                    advo.getTypology().name(),
                     advo.getDescription(),
                     pictureUrls,
                     advo.getHouseSize(),
@@ -59,7 +59,7 @@ public class AdConverter {
           List<String> pictureUrls = getPictureUrlList(advo);
           publicAd = new PublicAd(
                   advo.getId(),
-                  advo.getTypology(),
+                  advo.getTypology().name(),
                   advo.getDescription(),
                   pictureUrls,
                   advo.getHouseSize(),
