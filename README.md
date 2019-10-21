@@ -1,3 +1,15 @@
+## Resolución del reto propuesto por idealista
+
+Esta resolución propuesta por mi para una prueba planteada desde Idealista. Más abajo se especifica el mismo texto de requisitos que se me proporcionó cuando se me planteó este reto.
+
+En todas las partes del código se ha procurado utilizar **programación funcional**. Además, se han incorporado las siguientes dependencias:
+
+* Lombok
+* JUnit 4
+* Mockito 3
+
+El esqueleto propuesto se ha modificado levemente para adaptarlo a una estructura más cercana e intituitiva a mi juicio. Sin embargo, se ha procurado respetar lo más posible el código original proporcionado.
+
 # Reto: Servicio para gestión de calidad de los anuncios
 
 [![Build Status](https://travis-ci.org/idealista/coding-test-ranking.svg?branch=master)](https://travis-ci.org/idealista/coding-test-ranking)
